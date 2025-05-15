@@ -90,13 +90,35 @@ const app = (() => {
                     }
                 }
                 
-                // Try to place the ship
-                if (board.validateShipPlacement(ship.name, coordinates)) {
-                    board.placeShip(ship.name, coordinates);
+                // Check manually if all coordinates are valid and not occupied
+                let isValid = true;
+                for (const [cx, cy] of coordinates) {
+                    if (cx < 0 || cy < 0 || cx >= board.size || cy >= board.size || board.board[cx][cy] !== null) {
+                        isValid = false;
+                        break;
+                    }
+                }
+                
+                if (isValid) {
+                    // Mark each cell with 'ship'
+                    coordinates.forEach(([cx, cy]) => {
+                        board.board[cx][cy] = 'ship';
+                    });
+                    
+                    // Add to ships array
+                    board.ships.push({
+                        name: ship.name,
+                        size: ship.size,
+                        coordinates
+                    });
+                    
                     placed = true;
                 }
             }
         });
+        
+        // Debug: Log the board state to check if ships are placed
+        console.log('Opponent board state:', board.board);
     };
 
     const transitionToBattle = () => {

@@ -14,7 +14,7 @@ class BattlePhase {
 
     renderBoards() {
         const gameContainer = document.createElement('div');
-        gameContainer.classList.add('game-container');
+        gameContainer.classList.add('game-container', 'battle-phase');
         
         const statusMessage = document.createElement('div');
         statusMessage.classList.add('status-message');
@@ -95,6 +95,11 @@ class BattlePhase {
         // Update the opponent's board display
         const cell = document.querySelector(`.opponent-board .cell[data-x="${x}"][data-y="${y}"]`);
         cell.classList.add(result);
+        
+        // If it's a hit, we should show that there was a ship there
+        if (result === 'hit') {
+            cell.classList.add('ship');
+        }
         
         this.updateGameState(result, 'player');
     }
