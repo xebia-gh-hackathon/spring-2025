@@ -5,6 +5,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
 }
 
 body {
@@ -122,12 +125,13 @@ button:disabled {
   background-color: #e6eeff;
   border: 1px solid #a0c0ff;
   cursor: pointer;
-  transition: all 0.1s;
   position: relative;
+  transition: none; /* Disable all transitions */
 }
 
 .cell:hover {
   background-color: #c0d8ff;
+  transition: none; /* Disable hover transition */
 }
 
 .cell.ship {
@@ -166,11 +170,17 @@ button:disabled {
 .cell.preview-valid {
   background-color: rgba(100, 200, 100, 0.7);
   border: 2px solid #4caf50;
+  transition: none; /* Disable transition for preview */
+  transform: none; /* Ensure no transform is applied */
+  animation: none; /* Disable any animations */
 }
 
 .cell.preview-invalid {
   background-color: rgba(255, 100, 100, 0.7);
   border: 2px solid #f44336;
+  transition: none; /* Disable transition for preview */
+  transform: none; /* Ensure no transform is applied */
+  animation: none; /* Disable any animations */
 }
 
 /* Ship placement styles */
